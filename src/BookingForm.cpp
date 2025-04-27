@@ -4,13 +4,17 @@
 #include <iostream>
 #include <ctime>  // For getting current date
 #include "RectanglText.h"
+#include "Name.h"
+#include "Id.h"
+#include "Address.h"
+#include "Email.h"
 
 BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :window(win), formManager(manager) {
 	m_yOffset = 60;
-    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset, "Name:"));
-    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "ID:"));
-    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "Address:"));
-    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "Email:")) ;
+    m_inputFields.push_back(std::make_unique<Name>(m_yOffset));
+    m_inputFields.push_back(std::make_unique<Id>(m_yOffset += 50));
+    m_inputFields.push_back(std::make_unique<Address>(m_yOffset += 50));
+    m_inputFields.push_back(std::make_unique<Email>(m_yOffset += 50)) ;
 
     fieldLabels = { "Name:", "ID:", "Address:", "Email:" };  // ✅ Add common fields
     userInput.resize(fieldLabels.size(), "");  // Initialize input fields
