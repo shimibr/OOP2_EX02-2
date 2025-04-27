@@ -19,7 +19,7 @@ class BookingForm {
 protected:
 
 
-	std::vector<FieldToInput> m_inputFields;
+	std::vector<std::unique_ptr<FieldToInput>> m_inputFields;
 
     std::vector<std::string> fieldLabels;
     std::vector<std::string> userInput;

@@ -1,0 +1,17 @@
+#include "CarRentalForm.h"
+#include "RecPress.h"
+
+
+class FieldToInputSelect : public FieldToInput
+{
+public:
+	FieldToInputSelect(int& yOffset, std::string nameBox,std::vector<std::string> options,bool multipleSelect);
+	bool isInputBox(sf::Vector2f mousePos) override;
+	void drawToForm(sf::RenderWindow& window) override;
+	void drawToPresent(sf::RenderWindow& window, int& yOffset) override;
+	
+
+private:
+	std::vector<RecPress> m_options;
+	bool m_multipleSelect = false;
+};

@@ -1,9 +1,9 @@
 #include "FieldToInput.h"
 
-FieldToInput::FieldToInput(sf::Vector2f position,std::string nameBox)
+FieldToInput::FieldToInput(int& yOffset,std::string nameBox)
 {
 	m_inputBox.setSize(sf::Vector2f(250, 35));
-	m_inputBox.setPosition(position);
+	m_inputBox.setPosition(sf::Vector2f(250, yOffset));
 	m_inputBox.setFillColor(sf::Color::White);
 	m_inputBox.setOutlineThickness(2);
 
@@ -17,12 +17,12 @@ FieldToInput::FieldToInput(sf::Vector2f position,std::string nameBox)
 	m_input.setFont(font);
 	m_input.setCharacterSize(16);
 	m_input.setFillColor(sf::Color(60, 60, 60));
-	m_input.setPosition(position.x + 5, position.y + 8);
+	m_input.setPosition(255, yOffset + 8);
 
 	m_nameBox.setFont(font);
 	m_nameBox.setCharacterSize(18);
 	m_nameBox.setFillColor(sf::Color(60, 60, 60));
-	m_nameBox.setPosition(20, position.y +5);
+	m_nameBox.setPosition(20, yOffset +5);
 	m_nameBox.setString(nameBox);
 
 	m_Present.setFont(font);

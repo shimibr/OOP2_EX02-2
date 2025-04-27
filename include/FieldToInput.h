@@ -8,11 +8,12 @@
 class FieldToInput
 {
 public:
-	FieldToInput(sf::Vector2f position, std::string nameBox);
+	FieldToInput(int& yOffset, std::string nameBox);
+	virtual ~FieldToInput() = default; // Add a virtual destructor  
 	void setInput(const char input) {  m_inputString += input ; }
 	void setInputBack() { m_inputString.pop_back();}
-	bool isInputBox(sf::Vector2f mousePos);
 
+	virtual bool isInputBox(sf::Vector2f mousePos);
 	virtual void drawToForm(sf::RenderWindow& window);
 	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset);
 

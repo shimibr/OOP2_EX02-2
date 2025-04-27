@@ -6,21 +6,24 @@
 #include "RectanglText.h"
 
 BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :window(win), formManager(manager) {
+	m_yOffset = 60;
+    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset, "Name:"));
+    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "ID:"));
+    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "Address:"));
+    m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "Email:")) ;
 
-    m_inputFields = { FieldToInput(sf::Vector2f(250, 60), "Name:"), FieldToInput(sf::Vector2f(250, 110), "ID:")
-                    ,FieldToInput(sf::Vector2f(250, 160), "Address:"), FieldToInput(sf::Vector2f(250, 210), "Email:") };
     fieldLabels = { "Name:", "ID:", "Address:", "Email:" };  // ✅ Add common fields
     userInput.resize(fieldLabels.size(), "");  // Initialize input fields
 }
 //==========================================
 void BookingForm::render(sf::RenderWindow& window)
 {
-    RectanglText submit(20, sf::Vector2f(140, 40), sf::Vector2f(20, m_yOffset)
+    RectanglText submit(20, sf::Vector2f(140, 40), sf::Vector2f(20, m_yOffset+50)
         , sf::Color(50, 150, 50), sf::Color::White, "DONE");
 
     submit.drawRec(window);
 
-    RectanglText cancel(20, sf::Vector2f(140, 40), sf::Vector2f(200, m_yOffset)
+    RectanglText cancel(20, sf::Vector2f(140, 40), sf::Vector2f(200, m_yOffset+50)
         , sf::Color(180, 0, 0), sf::Color::White, "CANCEL");
 
     cancel.drawRec(window);
@@ -63,31 +66,21 @@ void BookingForm::openConfirmationWindow() {
         title.setPosition(130, 20);
         confirmWindow.draw(title);
 
-		int yOffset = 150;
+		int yOffset = 100;
         for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
-            m_inputFields[i].drawToPresent(confirmWindow, yOffset);
+            m_inputFields[i]->drawToPresent(confirmWindow, yOffset);
 			yOffset += 40;
         }
-        //std::string bookingInfo;
-        //for (size_t i = 0; i < fieldLabels.size(); ++i) {
-        //    //פה צריך להכניס את הבדיקה
-        //    bookingInfo += fieldLabels[i] + " " + userInput[i] + "\n";
-        //}
-
-        //sf::Text details(bookingInfo, font, 18);
-        //details.setFillColor(sf::Color::Black);
-        //details.setPosition(50, 80);
-        //confirmWindow.draw(details);
 
         // ✅ Approve Button
-		RectanglText approveText(18, sf::Vector2f(120, 40), sf::Vector2f(100, 300)
+		RectanglText approveText(18, sf::Vector2f(120, 40), sf::Vector2f(100, yOffset)
                         , sf::Color(50, 150, 50), sf::Color::White, "APPROVE");
 
         approveText.drawRec(confirmWindow);
 
 
         // ✅ Cancel Button
-        RectanglText cancelButton(18, sf::Vector2f(120, 40), sf::Vector2f(280, 300)
+        RectanglText cancelButton(18, sf::Vector2f(120, 40), sf::Vector2f(280, yOffset)
             , sf::Color(180, 0, 0), sf::Color::White, "CANCEL");
 
         cancelButton.drawRec(confirmWindow);
