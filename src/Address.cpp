@@ -7,7 +7,7 @@ Address::Address(int& yOffset)
 }
 
 //=========================================
-bool Address::validateInput(sf::RenderWindow& window, int& yOffset)
+bool Address::validateInput()
 {
     if (m_inputString.find(' ') != std::string::npos) {
         return false;
@@ -58,10 +58,9 @@ bool Address::validateInput(sf::RenderWindow& window, int& yOffset)
 void Address::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     FieldToInput::drawToPresent(window, yOffset);
-    if (!validateInput(window, yOffset))
-    {
-        m_PresentError.setString("The input does not adhere to the expected format");
-        m_PresentError.setPosition(50, yOffset);
-        window.draw(m_PresentError);
-    }
+    if (!validateInput())
+        m_errorString = "The input does not adhere to the expected format";
+    else
+        m_errorString = "";
+        
 }

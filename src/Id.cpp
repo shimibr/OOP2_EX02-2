@@ -7,7 +7,7 @@ Id::Id(int& yOffset)
 }
 
 //=========================================
-bool Id::validateInput(sf::RenderWindow& window, int& yOffset){
+bool Id::validateInput(){
     if (m_inputString.length() < 5 || m_inputString.length() > 9) {
         return false;
     }
@@ -35,12 +35,10 @@ bool Id::validateInput(sf::RenderWindow& window, int& yOffset){
 //=========================================
 void Id::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
-    FieldToInput::drawToPresent(window, yOffset);
-    if (!validateInput(window, yOffset))
-    {
-        m_PresentError.setString("Wrong control digit");
-        m_PresentError.setPosition(50, yOffset);
-		window.draw(m_PresentError);
+    if (!validateInput())
+		m_errorString = "Wrong control digit";
+    else
+       m_errorString = "";
 
-    }
+    FieldToInput::drawToPresent(window, yOffset);
 }

@@ -7,7 +7,7 @@ Email::Email(int& yOffset)
 }
 
 //=========================================
-bool Email::validateInput(sf::RenderWindow& window, int& yOffset)
+bool Email::validateInput()
 {
         if (m_inputString.find(' ') != std::string::npos) {
             return false;
@@ -62,12 +62,11 @@ bool Email::validateInput(sf::RenderWindow& window, int& yOffset)
 void Email::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     FieldToInput::drawToPresent(window, yOffset);
-    if (!validateInput(window, yOffset))
-    {
-        m_PresentError.setString("The input does not adhere to the expected format");
-        m_PresentError.setPosition(50, yOffset);
-        window.draw(m_PresentError);
-    }
+    if (!validateInput())
+		m_errorString = "The input does not adhere to the expected format";
+	
+    else
+        m_errorString = "";
 }
 //=========================================
 bool Email::isValidChar(char c) const

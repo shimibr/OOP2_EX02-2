@@ -6,7 +6,7 @@ class Address : public FieldToInput
 {
 public:
 	Address(int& yOffset);
-	bool validateInput(sf::RenderWindow& window, int& yOffset);
+	bool validateInput();
 	void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 
 private:

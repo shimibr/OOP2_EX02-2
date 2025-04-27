@@ -21,8 +21,10 @@ public:
 protected:
 	
 	std::string m_inputString;
-	sf::Text m_PresentError;
+	std::string m_errorString;
 private:
+
+	sf::Text m_PresentError;
 	sf::Text m_Present; 
 	sf::RectangleShape m_inputBox;
 	sf::Text m_nameBox;

@@ -6,7 +6,7 @@ class Name : public FieldToInput
 {
 public:
 	Name(int &yOffset);
-	bool validateInput(sf::RenderWindow& window, int& yOffset) ;
+	bool validateInput() ;
 	void drawToPresent(sf::RenderWindow& window, int& yOffset)override ;
 
 private:

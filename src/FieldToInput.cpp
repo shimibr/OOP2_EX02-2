@@ -61,4 +61,10 @@ void FieldToInput::drawToPresent(sf::RenderWindow& window, int& yOffset)
 	m_Present.setString(displayText);
 	m_Present.setPosition(30, yOffset);
 	window.draw(m_Present);
+	if (m_errorString != "")
+	{
+		m_PresentError.setString(m_errorString);
+		m_PresentError.setPosition(50, yOffset += 25);
+		window.draw(m_PresentError);
+	}
 }
