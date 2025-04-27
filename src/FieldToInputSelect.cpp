@@ -23,14 +23,20 @@ bool FieldToInputSelect::isInputBox(sf::Vector2f mousePos)
 			if (!m_multipleSelect)
 			{
 				for (std::size_t j = 0; j < m_options.size(); ++j)
+				{
 					if (j != i)
-						m_options[j].setColor(sf::Color::White);
+						m_options[j].setIsSelected(false);
+					m_options[j].setColor();
+				}
 				m_inputString = m_options[i].getPossibility();
 				return true;
 			}
 			m_inputString = "";
 			for (std::size_t i = 0; i < m_options.size(); ++i)
+			{
+				m_options[i].setColor();
 				m_inputString += m_options[i].getPossibility();
+			}
 			return true;
 		}
 	}

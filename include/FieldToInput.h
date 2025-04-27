@@ -11,7 +11,7 @@ public:
 	FieldToInput(int& yOffset, std::string nameBox);
 	virtual ~FieldToInput() = default; // Add a virtual destructor  
 	void setInput(const char input) {  m_inputString += input ; }
-	void setInputBack() { m_inputString.pop_back();}
+	void setInputBack();
 	void setIsSelected(bool isSelected) { m_isSelected = isSelected; }
 
 	virtual bool isInputBox(sf::Vector2f mousePos);

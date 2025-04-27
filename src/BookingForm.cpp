@@ -33,6 +33,55 @@ void BookingForm::render(sf::RenderWindow& window)
     cancel.drawRec(window);
 }
 //==========================================
+void BookingForm::handleInput(sf::Event event)
+{
+    if (event.type == sf::Event::TextEntered) {
+        if (event.text.unicode == '\b') {
+            m_inputFields[activeField]->setInputBack();
+        }
+        else if (event.text.unicode >= 32 && event.text.unicode < 128) {
+            m_inputFields[activeField]->setInput(static_cast<char>(event.text.unicode));
+        }
+    }
+    else if (event.type == sf::Event::KeyPressed) {
+        if (event.key.code == sf::Keyboard::Tab) {
+            m_inputFields[activeField]->setIsSelected(false);
+            activeField = (activeField + 1) % userInput.size();
+        }
+        if (event.key.code == sf::Keyboard::Return) {
+            std::cout << "Entered Data: ";
+            //for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
+            //	std::cout << fieldLabels[i] << ": " << m_inputFields[i]->m_inputString << "\n";
+            //}
+        }
+    }
+    else if (event.type == sf::Event::MouseButtonPressed) {
+        sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
+        int yOffset = 60;
+
+        for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
+            if (m_inputFields[i]->isInputBox(mousePos)) {
+                activeField = i;
+            }
+            yOffset += 50;//hyuijbhio
+        }
+
+
+        if (mousePos.x >= 20 && mousePos.x <= 160 && mousePos.y >= yOffset && mousePos.y <= yOffset + 40) {
+            std::cout << "Car Rental Confirmed!\n";
+            openConfirmationWindow();
+            return;
+        }
+
+        if (mousePos.x >= 200 && mousePos.x <= 340 && mousePos.y >= yOffset && mousePos.y <= yOffset + 40) {
+            std::cout << "Cancelled Car Rental\n";
+            formManager->closeForm();
+            return;
+        }
+    }
+    m_inputFields[activeField]->setIsSelected(true);
+}
+//==========================================
 void BookingForm::openConfirmationWindow() {
     const std::string& formTitle = getFormType();
     sf::RenderWindow confirmWindow(sf::VideoMode(500, 600), "Confirm " + formTitle);
@@ -43,8 +92,38 @@ void BookingForm::openConfirmationWindow() {
     bool approved = false;
 
     while (confirmWindow.isOpen()) {
+        confirmWindow.clear(sf::Color(240, 240, 240));
+
+        sf::Text title("Confirm " + formTitle, font, 22);
+        title.setFillColor(sf::Color::Black);
+        title.setStyle(sf::Text::Bold);
+        title.setPosition(130, 20);
+        confirmWindow.draw(title);
+
+        int yOffset = 100;
+        for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
+            m_inputFields[i]->drawToPresent(confirmWindow, yOffset);
+            yOffset += 40;
+        }
+
+        // ✅ Approve Button
+        RectanglText approveText(18, sf::Vector2f(120, 40), sf::Vector2f(100, yOffset)
+            , sf::Color(50, 150, 50), sf::Color::White, "APPROVE");
+
+        approveText.drawRec(confirmWindow);
+
+
+        // ✅ Cancel Button
+        RectanglText cancelButton(18, sf::Vector2f(120, 40), sf::Vector2f(280, yOffset)
+            , sf::Color(180, 0, 0), sf::Color::White, "CANCEL");
+
+        cancelButton.drawRec(confirmWindow);
+
+        confirmWindow.display();
+
+
         sf::Event event;
-        while (confirmWindow.pollEvent(event)) {
+        while (confirmWindow.waitEvent(event)) {
             if (event.type == sf::Event::Closed)
                 confirmWindow.close();
 
@@ -62,34 +141,7 @@ void BookingForm::openConfirmationWindow() {
             }
         }
 
-        confirmWindow.clear(sf::Color(240, 240, 240));
-
-        sf::Text title("Confirm " + formTitle, font, 22);
-        title.setFillColor(sf::Color::Black);
-        title.setStyle(sf::Text::Bold);
-        title.setPosition(130, 20);
-        confirmWindow.draw(title);
-
-		int yOffset = 100;
-        for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
-            m_inputFields[i]->drawToPresent(confirmWindow, yOffset);
-			yOffset += 40;
-        }
-
-        // ✅ Approve Button
-		RectanglText approveText(18, sf::Vector2f(120, 40), sf::Vector2f(100, yOffset)
-                        , sf::Color(50, 150, 50), sf::Color::White, "APPROVE");
-
-        approveText.drawRec(confirmWindow);
-
-
-        // ✅ Cancel Button
-        RectanglText cancelButton(18, sf::Vector2f(120, 40), sf::Vector2f(280, yOffset)
-            , sf::Color(180, 0, 0), sf::Color::White, "CANCEL");
-
-        cancelButton.drawRec(confirmWindow);
-
-        confirmWindow.display();
+       
     }
 
     if (approved) {

@@ -20,11 +20,10 @@ RecPress::RecPress(sf::Vector2f position, sf::Vector2f size, std::string name,sf
 
 }
 //=========================================
-void RecPress::setColor(sf::Color color)
+void RecPress::setColor()
 {
-	m_isSelected = false;
-	m_possibility.setFillColor(sf::Color(60, 60, 60));
-	m_rec.setFillColor(color);
+	m_rec.setFillColor(m_isSelected ? sf::Color(0, 120, 255) : sf::Color::White);
+	m_possibility.setFillColor(m_isSelected ? sf::Color::White : sf::Color(60, 60, 60));
 }
 //=========================================
 void RecPress::setOutline(sf::Color color)
@@ -53,8 +52,8 @@ bool RecPress::isRecPress(sf::Vector2f mousePos)
 	if (m_rec.getGlobalBounds().contains(mousePos))
 	{
 		m_isSelected = !m_isSelected;
-		m_rec.setFillColor(m_isSelected ? sf::Color(0, 120, 255) : sf::Color::White);
-		m_possibility.setFillColor(m_isSelected ? sf::Color::White : sf::Color(60, 60, 60));
+	//	m_rec.setFillColor(m_isSelected ? sf::Color(0, 120, 255) : sf::Color::White);
+		//m_possibility.setFillColor(m_isSelected ? sf::Color::White : sf::Color(60, 60, 60));
 		return true;
 	}
 	return false;
