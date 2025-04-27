@@ -31,6 +31,7 @@ bool FieldToInputSelect::isInputBox(sf::Vector2f mousePos)
 			m_inputString = "";
 			for (std::size_t i = 0; i < m_options.size(); ++i)
 				m_inputString += m_options[i].getPossibility();
+			return true;
 		}
 	}
 	return false;

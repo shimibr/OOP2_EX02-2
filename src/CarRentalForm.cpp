@@ -73,6 +73,7 @@ void CarRentalForm::handleInput(sf::Event event) {
     }
     else if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Tab) {
+            m_inputFields[activeField]->setIsSelected(false);
             activeField = (activeField + 1) % userInput.size();
         }
         if (event.key.code == sf::Keyboard::Return) {
@@ -91,6 +92,7 @@ void CarRentalForm::handleInput(sf::Event event) {
 			}
             yOffset += 50;//hyuijbhio
 		}
+        
 
         if (mousePos.x >= 20 && mousePos.x <= 160 && mousePos.y >= yOffset && mousePos.y <= yOffset + 40) {
             std::cout << "Car Rental Confirmed!\n";
@@ -104,6 +106,7 @@ void CarRentalForm::handleInput(sf::Event event) {
             return;
         }
     }
+    m_inputFields[activeField]->setIsSelected(true);
 }
 
 
