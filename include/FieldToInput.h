@@ -22,7 +22,7 @@ protected:
 	std::string m_inputString;
 	sf::Text m_PresentError;
 private:
-	sf::Text m_Present;
+	sf::Text m_Present; 
 	sf::RectangleShape m_inputBox;
 	sf::Text m_nameBox;
 	sf::Text m_input;
