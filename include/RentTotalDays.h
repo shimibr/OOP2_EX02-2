@@ -2,10 +2,10 @@
 #include "FieldToInput.h"
 
 
-class Address : public FieldToInput
+class RentTotalDays : public FieldToInput
 {
 public:
-	Address(int& yOffset, std::string fieldName);
+	RentTotalDays(int& yOffset, std::string fieldName);
 	bool validateInput();
 	void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 
