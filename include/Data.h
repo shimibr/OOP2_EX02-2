@@ -2,10 +2,10 @@
 #include "FieldToInput.h"
 
 
-class Address : public FieldToInput
+class Data : public FieldToInput
 {
 public:
-	Address(int& yOffset, std::string fieldName);
+	Data(int& yOffset, std::string fieldName);
 	bool validateInput();
 	void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 

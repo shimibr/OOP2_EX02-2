@@ -2,8 +2,8 @@
 
 #include "Address.h"
 
-Address::Address(int& yOffset)
-    :FieldToInput(yOffset, "Address:") {
+Address::Address(int& yOffset, std::string fieldName)
+    :FieldToInput(yOffset, fieldName) {
 }
 
 //=========================================
