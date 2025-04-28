@@ -40,7 +40,7 @@ public:
     virtual ~BookingForm() = default;
     virtual std::string getFormType() const = 0;
     virtual void render(sf::RenderWindow& window) = 0;
-    virtual void handleInput(sf::Event event);
+    virtual void handleInput(sf::Event event) = 0;
 };
 
 #endif // BOOKINGFORM_H
