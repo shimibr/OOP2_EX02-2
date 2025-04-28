@@ -23,6 +23,7 @@ protected:
 	std::string m_inputString;
 	std::string m_errorString;
 private:
+	void pellFrontText(sf::Text& Text,const int size, sf::Color color);
 
 	sf::Text m_PresentError;
 	sf::Text m_Present; 

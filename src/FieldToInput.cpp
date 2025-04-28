@@ -7,31 +7,17 @@ FieldToInput::FieldToInput(int& yOffset,std::string nameBox)
 	m_inputBox.setFillColor(sf::Color::White);
 	m_inputBox.setOutlineThickness(2);
 
-	static sf::Font font;
-	static bool isLoad = false;
-	if (!isLoad) {
-		font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
-		isLoad = true;
-	}
-
-	m_input.setFont(font);
-	m_input.setCharacterSize(16);
-	m_input.setFillColor(sf::Color(60, 60, 60));
+	
+	pellFrontText(m_input, 16, sf::Color(60, 60, 60));
 	m_input.setPosition(255, yOffset + 8);
 
-	m_nameBox.setFont(font);
-	m_nameBox.setCharacterSize(18);
-	m_nameBox.setFillColor(sf::Color(60, 60, 60));
+	pellFrontText(m_nameBox, 18, sf::Color(60, 60, 60));
 	m_nameBox.setPosition(20, yOffset +5);
 	m_nameBox.setString(nameBox);
 
-	m_Present.setFont(font);
-	m_Present.setCharacterSize(18);
-	m_Present.setFillColor(sf::Color::Black);
+	pellFrontText(m_Present, 18, sf::Color::Black);
 
-	m_PresentError.setFont(font);
-	m_PresentError.setCharacterSize(16);
-	m_PresentError.setFillColor(sf::Color::Red);
+	pellFrontText(m_PresentError, 16, sf::Color::Red);
 }
 //======================================
 void FieldToInput::setInputBack()
@@ -73,4 +59,20 @@ void FieldToInput::drawToPresent(sf::RenderWindow& window, int& yOffset)
 		m_PresentError.setPosition(50, yOffset += 25);
 		window.draw(m_PresentError);
 	}
+}
+
+//=======================================
+void FieldToInput::pellFrontText(sf::Text& Text, const int size, sf::Color color)
+{
+	static sf::Font font;
+	static bool isLoad = false;
+	if (!isLoad) {
+		font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
+		isLoad = true;
+	}
+
+	Text.setFont(font);
+	Text.setCharacterSize(size);
+	Text.setFillColor(color);
+	
 }

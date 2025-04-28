@@ -16,7 +16,7 @@ BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :windo
     m_inputFields.push_back(std::make_unique<Id>(m_yOffset += 50));
     m_inputFields.push_back(std::make_unique<Address>(m_yOffset += 50));
     m_inputFields.push_back(std::make_unique<Email>(m_yOffset += 50)) ;
-
+   
     fieldLabels = { "Name:", "ID:", "Address:", "Email:" };  // ✅ Add common fields
     userInput.resize(fieldLabels.size(), "");  // Initialize input fields
 }
@@ -38,11 +38,10 @@ void BookingForm::render(sf::RenderWindow& window)
     for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
         m_inputFields[i]->drawToForm(window);
     }
-    RecPress pressDONE(sf::Vector2f(100, m_yOffset+50), 18, "DONE", sf::Color(50, 150, 50));
-    pressDONE.drawRec(window);
-
-    RecPress pressCANCEL(sf::Vector2f(280, m_yOffset+50), 18, "CANCEL", sf::Color(180, 0, 0));
-    pressCANCEL.drawRec(window);
+   
+	for (std::size_t i = 0; i < m_buttons.size(); ++i) {
+		m_buttons[i].drawRec(window);
+	}
 
 }
 //=========================================
@@ -79,19 +78,25 @@ void BookingForm::handleInput(sf::Event event)
         }
 
 
-        if (mousePos.x >= 20 && mousePos.x <= 160 && mousePos.y >= yOffset && mousePos.y <= yOffset + 40) {
+        if (m_buttons[0].isRecPress(mousePos)) {
             std::cout << "Car Rental Confirmed!\n";
             openConfirmationWindow();
             return;
         }
 
-        if (mousePos.x >= 200 && mousePos.x <= 340 && mousePos.y >= yOffset && mousePos.y <= yOffset + 40) {
+        if (m_buttons[1].isRecPress(mousePos)) {
             std::cout << "Cancelled Car Rental\n";
             formManager->closeForm();
             return;
         }
     }
     m_inputFields[activeField]->setIsSelected(true);
+}
+//=========================================
+void BookingForm::setbuttons()
+{
+    m_buttons.push_back(RecPress(sf::Vector2f(30, m_yOffset + 50), 18, "DONE", sf::Color(50, 150, 50)));
+    m_buttons.push_back(RecPress(sf::Vector2f(180, m_yOffset + 50), 18, "CANCEL", sf::Color(180, 0, 0)));
 }
 //===========================================
 void BookingForm::setDefaultValues()

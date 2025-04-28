@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <array>
+#include <RecPress.h>
 class DialogueManager;
 
 struct PersonalInfo {
@@ -18,7 +19,7 @@ struct PersonalInfo {
 class BookingForm {
 protected:
 
-
+    void setbuttons();
 	std::vector<std::unique_ptr<FieldToInput>> m_inputFields;
 
     std::vector<std::string> fieldLabels;
@@ -42,6 +43,7 @@ public:
     virtual void render(sf::RenderWindow& window);
     virtual void handleInput(sf::Event event);
 private:
+	std::vector<RecPress> m_buttons;
 };
 
 #endif // BOOKINGFORM_H
