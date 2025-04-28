@@ -11,6 +11,7 @@ public:
 	RecPress(sf::Vector2f position, sf::Vector2f size, std::string possibility, sf::Color color);
 	RecPress(sf::Vector2f position,const int sizeText, std::string possibility, sf::Color color);
 	void setColor();
+	void setColor(sf::Color color) { m_rec.setFillColor(color); }
 	void setOutline(sf::Color color);
 	std::string getPossibility() const;
 	void drawRec(sf::RenderWindow& window);

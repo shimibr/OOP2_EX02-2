@@ -56,7 +56,7 @@ void FieldToInput::drawToPresent(sf::RenderWindow& window, int& yOffset)
 	if (m_errorString != "")
 	{
 		m_PresentError.setString(m_errorString);
-		m_PresentError.setPosition(50, yOffset += 25);
+		m_PresentError.setPosition(50, yOffset += 20);
 		window.draw(m_PresentError);
 	}
 }

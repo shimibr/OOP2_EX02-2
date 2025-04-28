@@ -43,7 +43,9 @@ public:
     virtual void render(sf::RenderWindow& window);
     virtual void handleInput(sf::Event event);
 private:
+	void checkAllFieldsFilled();
 	std::vector<RecPress> m_buttons;
+	bool m_allFieldsFilled = false;
 };
 
 #endif // BOOKINGFORM_H

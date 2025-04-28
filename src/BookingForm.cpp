@@ -23,6 +23,7 @@ BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :windo
 //==========================================
 void BookingForm::render(sf::RenderWindow& window)
 {
+
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
 
@@ -53,6 +54,7 @@ void BookingForm::handleInput(sf::Event event)
         }
         else if (event.text.unicode >= 32 && event.text.unicode < 128) {
             m_inputFields[activeField]->setInput(static_cast<char>(event.text.unicode));
+            checkAllFieldsFilled();
         }
     }
     else if (event.type == sf::Event::KeyPressed) {
@@ -78,7 +80,7 @@ void BookingForm::handleInput(sf::Event event)
         }
 
 
-        if (m_buttons[0].isRecPress(mousePos)) {
+        if (m_buttons[0].isRecPress(mousePos)&& m_allFieldsFilled) {
             std::cout << "Car Rental Confirmed!\n";
             openConfirmationWindow();
             return;
@@ -93,9 +95,22 @@ void BookingForm::handleInput(sf::Event event)
     m_inputFields[activeField]->setIsSelected(true);
 }
 //=========================================
+void BookingForm::checkAllFieldsFilled()
+{
+    m_buttons[0].setColor(sf::Color(50, 150, 50));
+    m_allFieldsFilled = true;
+    for (std::size_t i = 0; i < m_inputFields.size(); ++i)
+        if (!m_inputFields[i]->fieldIsFill())
+        {
+            m_buttons[0].setColor(sf::Color(150, 150, 150));
+            m_allFieldsFilled = false;
+            break;
+        }
+}
+//=========================================
 void BookingForm::setbuttons()
 {
-    m_buttons.push_back(RecPress(sf::Vector2f(30, m_yOffset + 50), 18, "DONE", sf::Color(50, 150, 50)));
+    m_buttons.push_back(RecPress(sf::Vector2f(30, m_yOffset + 50), 18, "DONE", sf::Color(150, 150, 150)));
     m_buttons.push_back(RecPress(sf::Vector2f(180, m_yOffset + 50), 18, "CANCEL", sf::Color(180, 0, 0)));
 }
 //===========================================
@@ -113,7 +128,7 @@ void BookingForm::openConfirmationWindow() {
     int yOffset = 80;
     for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
         m_inputFields[i]->drawToPresent(confirmWindow, yOffset);
-        yOffset += 30;
+        yOffset += 25;
     }
 
 	RecPress pressAPPROVE(sf::Vector2f(100, yOffset),18, "APPROVE", sf::Color(50, 150, 50));

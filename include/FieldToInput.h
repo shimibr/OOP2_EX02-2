@@ -17,7 +17,7 @@ public:
 	virtual bool isInputBox(sf::Vector2f mousePos);
 	virtual void drawToForm(sf::RenderWindow& window);
 	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset);
-
+	bool fieldIsFill()const { return m_inputString.size() > 0; }
 protected:
 	
 	std::string m_inputString;
