@@ -8,11 +8,12 @@ class RecPress
 {
 public:
 	RecPress(sf::Vector2f position, sf::Vector2f size, std::string possibility, sf::Color color);
-	void setColor(sf::Color color);
+	void setColor();
 	void setOutline(sf::Color color);
 	std::string getPossibility() const;
 	void drawRec(sf::RenderWindow& window);
 	bool isRecPress(sf::Vector2f mousePos);
+	void setIsSelected(bool isSelected) { m_isSelected = isSelected; }
 	
 
 private:
