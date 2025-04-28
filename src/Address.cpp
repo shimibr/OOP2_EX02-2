@@ -57,10 +57,11 @@ bool Address::validateInput()
 //=========================================
 void Address::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
-    FieldToInput::drawToPresent(window, yOffset);
     if (!validateInput())
         m_errorString = "The input does not adhere to the expected format";
     else
         m_errorString = "";
+   
+    FieldToInput::drawToPresent(window, yOffset);
         
 }

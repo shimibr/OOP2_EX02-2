@@ -33,6 +33,12 @@ FieldToInput::FieldToInput(int& yOffset,std::string nameBox)
 	m_PresentError.setCharacterSize(16);
 	m_PresentError.setFillColor(sf::Color::Red);
 }
+//======================================
+void FieldToInput::setInputBack()
+{
+	if (!m_inputString.empty())
+		m_inputString.pop_back();
+}
 //==========================================
 bool FieldToInput::isInputBox(sf::Vector2f mousePos)
 {

@@ -61,12 +61,13 @@ bool Email::validateInput()
 //=========================================
 void Email::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
-    FieldToInput::drawToPresent(window, yOffset);
     if (!validateInput())
 		m_errorString = "The input does not adhere to the expected format";
 	
     else
         m_errorString = "";
+
+    FieldToInput::drawToPresent(window, yOffset);
 }
 //=========================================
 bool Email::isValidChar(char c) const

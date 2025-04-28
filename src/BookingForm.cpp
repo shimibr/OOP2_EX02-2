@@ -8,6 +8,7 @@
 #include "Id.h"
 #include "Address.h"
 #include "Email.h"
+#include <RecPress.h>
 
 BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :window(win), formManager(manager) {
 	m_yOffset = 60;
@@ -22,19 +23,27 @@ BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :windo
 //==========================================
 void BookingForm::render(sf::RenderWindow& window)
 {
+    sf::Font font;
+    font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
+
+    window.clear(sf::Color(235, 235, 235));
+
+    // ✅ Title
+    sf::Text title(getFormType() + " Form", font, 26);
+    title.setFillColor(sf::Color(20, 20, 20));
+    title.setStyle(sf::Text::Bold);
+    title.setPosition(20, 10);
+    window.draw(title);
+
     for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
         m_inputFields[i]->drawToForm(window);
     }
+    RecPress pressDONE(sf::Vector2f(100, m_yOffset+50), 18, "DONE", sf::Color(50, 150, 50));
+    pressDONE.drawRec(window);
 
-    RectanglText submit(20, sf::Vector2f(140, 40), sf::Vector2f(20, m_yOffset+50)
-        , sf::Color(50, 150, 50), sf::Color::White, "DONE");
+    RecPress pressCANCEL(sf::Vector2f(280, m_yOffset+50), 18, "CANCEL", sf::Color(180, 0, 0));
+    pressCANCEL.drawRec(window);
 
-    submit.drawRec(window);
-
-    RectanglText cancel(20, sf::Vector2f(140, 40), sf::Vector2f(200, m_yOffset+50)
-        , sf::Color(180, 0, 0), sf::Color::White, "CANCEL");
-
-    cancel.drawRec(window);
 }
 //=========================================
 void BookingForm::handleInput(sf::Event event)
@@ -50,7 +59,7 @@ void BookingForm::handleInput(sf::Event event)
     else if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Tab) {
             m_inputFields[activeField]->setIsSelected(false);
-            activeField = (activeField + 1) % userInput.size();
+			activeField = (activeField + 1) % m_inputFields.size();
         }
         if (event.key.code == sf::Keyboard::Return) {
             std::cout << "Entered Data: ";
@@ -91,27 +100,49 @@ void BookingForm::setDefaultValues()
 //==========================================
 void BookingForm::openConfirmationWindow() {
     sf::RenderWindow confirmWindow(sf::VideoMode(500, 600), "Confirm " + getFormType());
-
-
-
+    
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
+    confirmWindow.clear(sf::Color(240, 240, 240));
+
+    int yOffset = 80;
+    for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
+        m_inputFields[i]->drawToPresent(confirmWindow, yOffset);
+        yOffset += 30;
+    }
+
+	RecPress pressAPPROVE(sf::Vector2f(100, yOffset),18, "APPROVE", sf::Color(50, 150, 50));
+    pressAPPROVE.drawRec(confirmWindow);
+
+    RecPress pressCANCEL(sf::Vector2f(280, yOffset), 18, "CANCEL", sf::Color(180,0,0));
+    pressCANCEL.drawRec(confirmWindow);
+
+
+    sf::Text title("Confirm " + getFormType(), font, 22);
+    title.setFillColor(sf::Color::Black);
+    title.setStyle(sf::Text::Bold);
+    title.setPosition(130, 20);
+    confirmWindow.draw(title);
+
+    confirmWindow.display();
+    
+
 
     bool approved = false;
 
     while (confirmWindow.isOpen()) {
         sf::Event event;
-        while (confirmWindow.pollEvent(event)) {
+        while (confirmWindow.waitEvent(event)) {
             if (event.type == sf::Event::Closed)
                 confirmWindow.close();
 
             sf::Vector2f mousePos(event.mouseButton.x, event.mouseButton.y);
 
             if (event.type == sf::Event::MouseButtonPressed) {
-                if (mousePos.x >= 280 && mousePos.x <= 400 && mousePos.y >= 300 && mousePos.y <= 345) {
+                if (pressCANCEL.isRecPress(mousePos)) {
                     confirmWindow.close();
                 }
-                if (mousePos.x >= 100 && mousePos.x <= 220 && mousePos.y >= 300 && mousePos.y <= 345) {
+                if (pressAPPROVE.isRecPress(mousePos)) {
                     std::cout << getFormType() << " Confirmed! Returning to main menu." << std::endl;
                     approved = true;
                     confirmWindow.close();
@@ -119,34 +150,7 @@ void BookingForm::openConfirmationWindow() {
             }
         }
 
-        confirmWindow.clear(sf::Color(240, 240, 240));
-
-        sf::Text title("Confirm " + getFormType(), font, 22);
-        title.setFillColor(sf::Color::Black);
-        title.setStyle(sf::Text::Bold);
-        title.setPosition(130, 20);
-        confirmWindow.draw(title);
-
-		int yOffset = 100;
-        for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
-            m_inputFields[i]->drawToPresent(confirmWindow, yOffset);
-			yOffset += 40;
-        }
-
-        // ✅ Approve Button
-		RectanglText approveText(18, sf::Vector2f(120, 40), sf::Vector2f(100, yOffset)
-                        , sf::Color(50, 150, 50), sf::Color::White, "APPROVE");
-
-        approveText.drawRec(confirmWindow);
-
-
-        // ✅ Cancel Button
-        RectanglText cancelButton(18, sf::Vector2f(120, 40), sf::Vector2f(280, yOffset)
-            , sf::Color(180, 0, 0), sf::Color::White, "CANCEL");
-
-        cancelButton.drawRec(confirmWindow);
-
-        confirmWindow.display();
+        
     }
 
     if (approved) {

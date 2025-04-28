@@ -8,6 +8,7 @@ class RecPress
 {
 public:
 	RecPress(sf::Vector2f position, sf::Vector2f size, std::string possibility, sf::Color color);
+	RecPress(sf::Vector2f position,const int sizeText, std::string possibility, sf::Color color);
 	void setColor();
 	void setOutline(sf::Color color);
 	std::string getPossibility() const;

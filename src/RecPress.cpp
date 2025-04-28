@@ -20,6 +20,13 @@ RecPress::RecPress(sf::Vector2f position, sf::Vector2f size, std::string name,sf
 
 }
 //=========================================
+RecPress::RecPress(sf::Vector2f position, const int sizeText, std::string possibility, sf::Color color)
+	:RecPress(position, sf::Vector2f(120, 40), possibility, color)
+{
+	m_possibility.setCharacterSize(sizeText);
+	m_possibility.setFillColor(sf::Color::White);
+}
+//=========================================
 void RecPress::setColor()
 {
 	m_rec.setFillColor(m_isSelected ? sf::Color(0, 120, 255) : sf::Color::White);
