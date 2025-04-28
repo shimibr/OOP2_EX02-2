@@ -8,6 +8,10 @@ Name::Name(int& yOffset)
 //=========================================
 bool Name::validateInput()
 {
+    if (m_inputString.empty()) {
+        return false;
+    }
+
     for (char ch : m_inputString)
     {
        if (std::isdigit(static_cast<unsigned char>(ch)))
