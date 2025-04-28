@@ -30,7 +30,8 @@ bool FieldToInputSelect::isInputBox(sf::Vector2f mousePos)
 			for (std::size_t i = 0; i < m_options.size(); ++i)
 			{
 				m_options[i].setColor();
-				m_inputString += m_options[i].getPossibility();
+				std::string temp = m_options[i].getPossibility();
+				m_inputString += !temp.empty() && !m_inputString.empty() ? "|"+ temp : temp;
 			}
 			return true;
 		}
