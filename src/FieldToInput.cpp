@@ -2,7 +2,7 @@
 
 FieldToInput::FieldToInput(int& yOffset,std::string nameBox)
 {
-	m_inputBox.setSize(sf::Vector2f(250, 35));
+	m_inputBox.setSize(sf::Vector2f(350, 35));
 	m_inputBox.setPosition(sf::Vector2f(250, yOffset));
 	m_inputBox.setFillColor(sf::Color::White);
 	m_inputBox.setOutlineThickness(2);
