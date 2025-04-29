@@ -2,8 +2,8 @@
 
 #include "Name.h"
 
-Name::Name(int& yOffset)
-	:Input(yOffset, "Name:") { }
+Name::Name(int& yOffset, std::string name)
+	:Input(yOffset, name) { }
 
 //=========================================
 bool Name::validateInput()

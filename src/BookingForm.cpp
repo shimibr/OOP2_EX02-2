@@ -11,7 +11,7 @@
 
 BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :window(win), formManager(manager) {
 	m_yOffset = 60;
-    m_inputFields.push_back(std::make_unique<Name>(m_yOffset));
+    m_inputFields.push_back(std::make_unique<Name>(m_yOffset, "Name:"));
     m_inputFields.push_back(std::make_unique<Id>(m_yOffset += 50));
     m_inputFields.push_back(std::make_unique<Address>(m_yOffset += 50, "Address:"));
     m_inputFields.push_back(std::make_unique<Email>(m_yOffset += 50)) ;
