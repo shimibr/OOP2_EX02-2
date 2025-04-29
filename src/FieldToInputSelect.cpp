@@ -5,7 +5,7 @@ FieldToInputSelect::FieldToInputSelect(int& yOffset, std::string nameBox, std::v
 {
 	yOffset += 50;
 	for (std::size_t i = 0; i < options.size(); ++i) {
-		m_options.push_back(RecPress(sf::Vector2f(20 + (500 / options.size()) * i, yOffset), sf::Vector2f(500/options.size() - 10, 30), options[i],sf::Color::White));
+		m_options.push_back(RecPress(sf::Vector2f(20 + ((500-20) / (options.size()-1)) * i, yOffset), sf::Vector2f(500/(options.size()-1) - 20, 30), options[i],sf::Color::White));
 		m_options[i].setOutline(sf::Color(160, 160, 160));
 	}
 
