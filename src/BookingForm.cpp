@@ -16,9 +16,6 @@ BookingForm::BookingForm(sf::RenderWindow& win, DialogueManager* manager) :windo
     m_inputFields.push_back(std::make_unique<Id>(m_yOffset += 50));
     m_inputFields.push_back(std::make_unique<Address>(m_yOffset += 50, "Address:"));
     m_inputFields.push_back(std::make_unique<Email>(m_yOffset += 50)) ;
-   
-    fieldLabels = { "Name:", "ID:", "Address:", "Email:" };  // ✅ Add common fields
-    userInput.resize(fieldLabels.size(), "");  // Initialize input fields
 }
 //==========================================
 void BookingForm::render(sf::RenderWindow& window)
@@ -52,21 +49,19 @@ void BookingForm::handleInput(sf::Event event)
 
     if (event.type == sf::Event::TextEntered) {
         if (event.text.unicode == '\b') {
-            m_inputFields[activeField]->setInputBack();
+            m_inputFields[m_activeField]->setInputBack();
         }
         else if (event.text.unicode >= 32 && event.text.unicode < 128) {
-            m_inputFields[activeField]->setInput(static_cast<char>(event.text.unicode));
+            m_inputFields[m_activeField]->setInput(static_cast<char>(event.text.unicode));
         }
     }
     else if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Tab) {
-            m_inputFields[activeField]->setIsSelected(false);
-			activeField = (activeField + 1) % m_inputFields.size();
+            m_inputFields[m_activeField]->setIsSelected(false);
+			m_activeField = (m_activeField + 1) % m_inputFields.size();
         }
         if (event.key.code == sf::Keyboard::Return) {
             std::cout << "Entered Data: ";
-            for (const auto& field : userInput) std::cout << field << " ";
-            std::cout << std::endl;
         }
     }
     else if (event.type == sf::Event::MouseButtonPressed) {
@@ -75,7 +70,7 @@ void BookingForm::handleInput(sf::Event event)
 
         for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
             if (m_inputFields[i]->isInputBox(mousePos)) {
-                activeField = i;
+                m_activeField = i;
             }
             yOffset += 50;//hyuijbhio
         }
@@ -93,7 +88,7 @@ void BookingForm::handleInput(sf::Event event)
             return;
         }
     }
-    m_inputFields[activeField]->setIsSelected(true);
+    m_inputFields[m_activeField]->setIsSelected(true);
 }
 //=========================================
 void BookingForm::checkAllFieldsFilled()
@@ -113,10 +108,6 @@ void BookingForm::setbuttons()
 {
     m_buttons.push_back(RecPress(sf::Vector2f(30, m_yOffset + 50), 18, "DONE", sf::Color(150, 150, 150)));
     m_buttons.push_back(RecPress(sf::Vector2f(180, m_yOffset + 50), 18, "CANCEL", sf::Color(180, 0, 0)));
-}
-//===========================================
-void BookingForm::setDefaultValues()
-{
 }
 //==========================================
 void BookingForm::openConfirmationWindow() {
