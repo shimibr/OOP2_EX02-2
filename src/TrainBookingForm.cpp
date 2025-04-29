@@ -2,7 +2,6 @@
 #include "DialogueManager.h"
 #include <iostream>
 #include <ctime>  // For getting current date
-#include <RectanglText.h>
 #include <FieldToInputSelect.h>
 
 TrainBookingForm::TrainBookingForm(sf::RenderWindow& win, DialogueManager* manager)

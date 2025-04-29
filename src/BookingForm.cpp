@@ -3,7 +3,6 @@
 #include "DialogueManager.h"
 #include <iostream>
 #include <ctime>  // For getting current date
-#include "RectanglText.h"
 #include "Name.h"
 #include "Id.h"
 #include "Address.h"
