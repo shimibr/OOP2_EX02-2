@@ -17,7 +17,7 @@ public:
 	void drawRec(sf::RenderWindow& window);
 	bool isRecPress(sf::Vector2f mousePos);
 	void setIsSelected(bool isSelected) { m_isSelected = isSelected; }
-	
+	std::string getText() const { return m_possibility.getString(); }
 
 private:
 	sf::RectangleShape m_rec;

@@ -1,3 +1,4 @@
+#pragma once
 #include "CarRentalForm.h"
 #include "RecPress.h"
 
@@ -9,9 +10,10 @@ public:
 	bool isInputBox(sf::Vector2f mousePos) override;
 	void drawToForm(sf::RenderWindow& window) override;
 	
+protected:
+	std::vector<RecPress> m_options;
 
 private:
 	void fillPressOptions();
-	std::vector<RecPress> m_options;
 	bool m_multipleSelect = false;
 };

@@ -7,6 +7,7 @@
 #include "RentTotalDays.h"
 #include "Data.h"
 #include "YesOrNo.h"
+#include "GustOneSelect.h"
 
 CarRentalForm::CarRentalForm(sf::RenderWindow& win, DialogueManager* manager)
     : BookingForm(win, manager) {
@@ -15,7 +16,7 @@ CarRentalForm::CarRentalForm(sf::RenderWindow& win, DialogueManager* manager)
         m_inputFields.push_back(std::make_unique<RentTotalDays>(m_yOffset += 50, "Rent total days:"));
         m_inputFields.push_back(std::make_unique<YesOrNo>(m_yOffset += 50, "GPS needed?"));
         m_inputFields.push_back(std::make_unique<YesOrNo>(m_yOffset += 50, "Child Seat needed:"));
-        m_inputFields.push_back(std::make_unique<FieldToInputSelect>(m_yOffset += 50, "Car Type:", std::vector<std::string>{"Economy", "Compact", "Sedan", "SUV", "Luxury"}, 0, 0));
+        m_inputFields.push_back(std::make_unique<GustOneSelect>(m_yOffset += 50, "Car Type:", std::vector<std::string>{"Economy", "Compact", "Sedan", "SUV", "Luxury"}, 0, 0));
         setbuttons();
 }
 
