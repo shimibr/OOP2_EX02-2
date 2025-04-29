@@ -15,7 +15,7 @@ CarRentalForm::CarRentalForm(sf::RenderWindow& win, DialogueManager* manager)
         m_inputFields.push_back(std::make_unique<RentTotalDays>(m_yOffset += 50, "Rent total days:"));
         m_inputFields.push_back(std::make_unique<YesOrNo>(m_yOffset += 50, "GPS needed?"));
         m_inputFields.push_back(std::make_unique<YesOrNo>(m_yOffset += 50, "Child Seat needed:"));
-        m_inputFields.push_back(std::make_unique<FieldToInputSelect>(m_yOffset += 50, "Car Type:", std::vector<std::string>{"Economy", "Compact", "Sedan", "SUV", "Luxury"}, 0));
+        m_inputFields.push_back(std::make_unique<FieldToInputSelect>(m_yOffset += 50, "Car Type:", std::vector<std::string>{"Economy", "Compact", "Sedan", "SUV", "Luxury"}, 0, 0));
         setbuttons();
 }
 

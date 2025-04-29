@@ -5,13 +5,13 @@
 class FieldToInputSelect : public FieldToInput
 {
 public:
-	FieldToInputSelect(int& yOffset, std::string nameBox,std::vector<std::string> options,bool multipleSelect);
+	FieldToInputSelect(int& yOffset, std::string nameBox,std::vector<std::string> options,bool multipleSelect,const int dipolat);
 	bool isInputBox(sf::Vector2f mousePos) override;
 	void drawToForm(sf::RenderWindow& window) override;
-	void drawToPresent(sf::RenderWindow& window, int& yOffset) override;
 	
 
 private:
+	void fillPressOptions();
 	std::vector<RecPress> m_options;
 	bool m_multipleSelect = false;
 };

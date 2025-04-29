@@ -1,6 +1,6 @@
 #include "FieldToInputSelect.h"
 
-FieldToInputSelect::FieldToInputSelect(int& yOffset, std::string nameBox, std::vector<std::string> options,bool multipleSelect)
+FieldToInputSelect::FieldToInputSelect(int& yOffset, std::string nameBox, std::vector<std::string> options,bool multipleSelect, const int dipolat)
 	: FieldToInput(yOffset, nameBox), m_multipleSelect(multipleSelect)
 {
 	yOffset += 50;
@@ -8,6 +8,8 @@ FieldToInputSelect::FieldToInputSelect(int& yOffset, std::string nameBox, std::v
 		m_options.push_back(RecPress(sf::Vector2f(20 + ((500-20) / (options.size()-1)) * i, yOffset), sf::Vector2f(500/(options.size()-1) - 20, 30), options[i],sf::Color::White));
 		m_options[i].setOutline(sf::Color(160, 160, 160));
 	}
+	m_options[dipolat].setIsSelected(true);
+	fillPressOptions();
 
 }
 //=========================================
@@ -25,14 +27,8 @@ bool FieldToInputSelect::isInputBox(sf::Vector2f mousePos)
 					if (j != i)
 						m_options[j].setIsSelected(false);
 
-			m_inputString = "";
-
-			for (std::size_t i = 0; i < m_options.size(); ++i)
-			{
-				m_options[i].setColor();
-				std::string temp = m_options[i].getPossibility();
-				m_inputString += !temp.empty() && !m_inputString.empty() ? "|"+ temp : temp;
-			}
+			fillPressOptions();
+			
 			return true;
 		}
 	}
@@ -47,7 +43,14 @@ void FieldToInputSelect::drawToForm(sf::RenderWindow& window)
 	FieldToInput::drawToForm(window);
 }
 //=========================================
-void FieldToInputSelect::drawToPresent(sf::RenderWindow& window, int& yOffset)
+void FieldToInputSelect::fillPressOptions()
 {
-	FieldToInput::drawToPresent(window, yOffset);
+	m_inputString = "";
+
+	for (std::size_t i = 0; i < m_options.size(); ++i)
+	{
+		m_options[i].setColor();
+		std::string temp = m_options[i].getPossibility();
+		m_inputString += !temp.empty() && !m_inputString.empty() ? "|" + temp : temp;
+	}
 }
