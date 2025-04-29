@@ -1,13 +1,13 @@
 #pragma once
 
-#include "RentTotalDays.h"
+#include "Between.h"
 
-RentTotalDays::RentTotalDays(int& yOffset, std::string fieldName)
+Between::Between(int& yOffset, std::string fieldName)
     :Input(yOffset, fieldName) {
 }
 
 //=========================================
-bool RentTotalDays::validateInput()
+bool Between::validateInput()
 {
     if (m_inputString.empty()) {
         return false;
@@ -24,7 +24,7 @@ bool RentTotalDays::validateInput()
     return (number >= 1 && number <= 999);
 }
 //=========================================
-void RentTotalDays::drawToPresent(sf::RenderWindow& window, int& yOffset)
+void Between::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     if (!validateInput())
         m_errorString = "The input does not adhere to the expected format";

@@ -12,7 +12,8 @@ public:
 	FieldToInput(int& yOffset, std::string nameBox);
 	virtual ~FieldToInput() = default; // Add a virtual destructor  
 	virtual void setInput(const int input) {}
-	virtual void setInput(char input) {
+	void setInput(char input) {
+		m_inputString += input;
 		if (input >= '0' && input <= '9')
 			setInput(int(input-'0'));
 	}
