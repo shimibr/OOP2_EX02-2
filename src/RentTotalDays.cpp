@@ -3,7 +3,7 @@
 #include "RentTotalDays.h"
 
 RentTotalDays::RentTotalDays(int& yOffset, std::string fieldName)
-    :FieldToInput(yOffset, fieldName) {
+    :Input(yOffset, fieldName) {
 }
 
 //=========================================

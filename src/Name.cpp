@@ -3,7 +3,7 @@
 #include "Name.h"
 
 Name::Name(int& yOffset)
-	:FieldToInput(yOffset, "Name:") { }
+	:Input(yOffset, "Name:") { }
 
 //=========================================
 bool Name::validateInput()

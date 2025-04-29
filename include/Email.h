@@ -1,8 +1,8 @@
 #pragma once
 #include "FieldToInput.h"
+#include "Input.h"
 
-
-class Email : public FieldToInput
+class Email : public Input<char>
 {
 public:
 	Email(int& yOffset);

@@ -1,8 +1,8 @@
 #include "CarRentalForm.h"
 #include "RecPress.h"
+#include "Input.h"
 
-
-class FieldToInputSelect : public FieldToInput
+class FieldToInputSelect : public Input<char>
 {
 public:
 	FieldToInputSelect(int& yOffset, std::string nameBox,std::vector<std::string> options,bool multipleSelect,const int dipolat);
