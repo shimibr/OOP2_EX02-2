@@ -48,13 +48,14 @@ void BookingForm::render(sf::RenderWindow& window)
 //=========================================
 void BookingForm::handleInput(sf::Event event)
 {
+    checkAllFieldsFilled();
+
     if (event.type == sf::Event::TextEntered) {
         if (event.text.unicode == '\b') {
             m_inputFields[activeField]->setInputBack();
         }
         else if (event.text.unicode >= 32 && event.text.unicode < 128) {
             m_inputFields[activeField]->setInput(static_cast<char>(event.text.unicode));
-            checkAllFieldsFilled();
         }
     }
     else if (event.type == sf::Event::KeyPressed) {
