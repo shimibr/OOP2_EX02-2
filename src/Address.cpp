@@ -3,7 +3,7 @@
 #include "Address.h"
 
 Address::Address(int& yOffset, std::string fieldName)
-    :FieldToInput(yOffset, fieldName) {
+    :Input(yOffset, fieldName) {
 }
 
 //=========================================

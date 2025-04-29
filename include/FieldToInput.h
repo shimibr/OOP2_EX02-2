@@ -4,13 +4,18 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <any>
 
 class FieldToInput
 {
 public:
 	FieldToInput(int& yOffset, std::string nameBox);
 	virtual ~FieldToInput() = default; // Add a virtual destructor  
-	void setInput(const char input) {  m_inputString += input ; }
+	virtual void setInput(const int input) {}
+	virtual void setInput(char input) {
+		if (input >= '0' && input <= '9')
+			setInput(int(input-'0'));
+	}
 	void setInputBack();
 	void setIsSelected(bool isSelected) { m_isSelected = isSelected; }
 

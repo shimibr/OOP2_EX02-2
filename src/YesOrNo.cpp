@@ -3,7 +3,7 @@
 #include "YesOrNo.h"
 
 YesOrNo::YesOrNo(int& yOffset, std::string fieldName)
-    :FieldToInput(yOffset, fieldName) {
+    :Input(yOffset, fieldName) {
 }
 
 //=========================================
