@@ -8,8 +8,8 @@ FieldToInput::FieldToInput(int& yOffset,std::string nameBox)
 	m_inputBox.setOutlineThickness(2);
 
 	
-	pellFrontText(m_input, 16, sf::Color(60, 60, 60));
-	m_input.setPosition(255, yOffset + 8);
+	pellFrontText(m_inputText, 16, sf::Color(60, 60, 60));
+	m_inputText.setPosition(255, yOffset + 8);
 
 	pellFrontText(m_nameBox, 18, sf::Color(60, 60, 60));
 	m_nameBox.setPosition(20, yOffset +5);
@@ -18,12 +18,6 @@ FieldToInput::FieldToInput(int& yOffset,std::string nameBox)
 	pellFrontText(m_Present, 18, sf::Color::Black);
 
 	pellFrontText(m_PresentError, 16, sf::Color::Red);
-}
-//======================================
-void FieldToInput::setInputBack()
-{
-	if (!m_inputString.empty())
-		m_inputString.pop_back();
 }
 //==========================================
 bool FieldToInput::isInputBox(sf::Vector2f mousePos)
@@ -41,9 +35,9 @@ void FieldToInput::drawToForm(sf::RenderWindow& window)
 	static sf::Clock cursorTimer;
 	bool cursorVisible = (cursorTimer.getElapsedTime().asMilliseconds() % 1000 < 500);
 	m_inputBox.setOutlineColor(m_isSelected ? sf::Color(0, 120, 255) : sf::Color(160, 160, 160));
-	m_input.setString(m_inputString + (m_isSelected && cursorVisible ? "|" : ""));
+	m_inputText.setString(m_inputString + (m_isSelected && cursorVisible ? "|" : ""));
 	window.draw(m_inputBox);
-	window.draw(m_input);
+	window.draw(m_inputText);
 	window.draw(m_nameBox);
 }
 //=======================================

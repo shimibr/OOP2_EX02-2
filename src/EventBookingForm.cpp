@@ -1,7 +1,7 @@
 ﻿#include "EventBookingForm.h"
 #include "DialogueManager.h"
 #include <iostream>
-#include <ctime>  // For getting current date
+#include <ctime>  
 #include <FieldToInputSelect.h>
 #include "YesOrNo.h"
 #include "GustOneSelect.h"
