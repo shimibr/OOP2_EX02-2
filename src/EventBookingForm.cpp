@@ -30,3 +30,9 @@ std::string EventBookingForm::getFormType() const {
     return "Event Booking";
 }
 
+bool EventBookingForm::checkCrossField()
+{
+    SeatingPreference* seatingPreference = dynamic_cast<SeatingPreference*>(m_inputFields[9].get());
+    return (m_inputFields[8]->crossFieldTest(*seatingPreference));
+}
+

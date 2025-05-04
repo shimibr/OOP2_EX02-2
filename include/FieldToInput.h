@@ -9,6 +9,8 @@
 class Gps;
 class CarType;
 class ChildSeat;
+class SeatingPreference;
+class Wheelchair;
 
 class FieldToInput
 {
@@ -31,6 +33,9 @@ public:
 	virtual bool crossFieldTest(const Gps& gps) const { return false; }
 	virtual bool crossFieldTest(const CarType& carType) const { return false; }
 	virtual bool crossFieldTest(const ChildSeat& childSeat) const { return false; }
+	virtual bool crossFieldTest(const SeatingPreference& seatingPreference) const { return false; }
+	virtual bool crossFieldTest(const Wheelchair& wheelchair) const { return false; }
+
 
 
 protected:
