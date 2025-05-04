@@ -3,7 +3,7 @@
 #include "Data.h"
 
 Data::Data(int& yOffset, std::string fieldName)
-    :Input(yOffset, fieldName) {
+    :InputChar(yOffset, fieldName) {
 }
 
 //=========================================

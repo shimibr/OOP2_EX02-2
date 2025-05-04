@@ -1,3 +1,4 @@
+#pragma once
 #include "Input.h"  
 
 class InputInt : public Input<int>  

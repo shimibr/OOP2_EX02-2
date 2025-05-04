@@ -3,7 +3,7 @@
 #include "Name.h"
 
 Name::Name(int& yOffset, std::string name)
-	:Input(yOffset, name) { }
+	:InputChar(yOffset, name) { }
 
 //=========================================
 bool Name::validateInput()

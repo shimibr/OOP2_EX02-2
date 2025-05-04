@@ -1,4 +1,5 @@
-﻿#ifndef BOOKINGFORM_H
+﻿#pragma once
+#ifndef BOOKINGFORM_H
 #define BOOKINGFORM_H
 
 #include "FieldToInput.h"

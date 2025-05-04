@@ -1,4 +1,5 @@
-﻿#ifndef FLIGHTBOOKINGFORM_H
+﻿#pragma once
+#ifndef FLIGHTBOOKINGFORM_H
 #define FLIGHTBOOKINGFORM_H
 
 #include "BookingForm.h"

@@ -1,8 +1,8 @@
 #pragma once
 #include "FieldToInput.h"
-#include "Input.h"
+#include "InputChar.h"
 
-class Data : public Input<char>
+class Data : public InputChar
 {
 public:
 	Data(int& yOffset, std::string fieldName);

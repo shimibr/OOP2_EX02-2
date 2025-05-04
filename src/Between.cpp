@@ -3,7 +3,7 @@
 #include "Between.h"
 
 Between::Between(int& yOffset, std::string fieldName)
-    :Input(yOffset, fieldName) {
+    :InputChar(yOffset, fieldName) {
 }
 
 //=========================================

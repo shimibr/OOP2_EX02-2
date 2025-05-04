@@ -3,7 +3,7 @@
 #include "Email.h"
 
 Email::Email(int& yOffset)
-    :Input(yOffset, "Email:") {
+    :InputChar(yOffset, "Email:") {
 }
 
 //=========================================

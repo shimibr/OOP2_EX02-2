@@ -1,9 +1,9 @@
 #pragma once
 #include "CarRentalForm.h"
 #include "RecPress.h"
-#include "Input.h"
+#include "InputChar.h"
 
-class FieldToInputSelect : public Input<char>
+class FieldToInputSelect : public InputChar
 {
 public:
 	FieldToInputSelect(int& yOffset, std::string nameBox,std::vector<std::string> options,bool multipleSelect,const int dipolat);

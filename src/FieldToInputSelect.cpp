@@ -1,7 +1,7 @@
 #include "FieldToInputSelect.h"
 
 FieldToInputSelect::FieldToInputSelect(int& yOffset, std::string nameBox, std::vector<std::string> options,bool multipleSelect, const int dipolat)
-	: Input(yOffset, nameBox), m_multipleSelect(multipleSelect)
+	: InputChar(yOffset, nameBox), m_multipleSelect(multipleSelect)
 {
 	yOffset += 50;
 	for (std::size_t i = 0; i < options.size(); ++i) {

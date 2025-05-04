@@ -1,8 +1,8 @@
 #pragma once
 #include "FieldToInput.h"
-#include "Input.h"
+#include "InputChar.h"
 
-class Between : public Input<char>
+class Between : public InputChar
 {
 public:
 	Between(int& yOffset, std::string fieldName);
