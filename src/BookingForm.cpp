@@ -80,13 +80,12 @@ void BookingForm::handleInput(sf::Event event)
 
 
         if (m_buttons[0].isRecPress(mousePos)&& m_allFieldsFilled) {
-            std::cout << "Car Rental Confirmed!\n";
+           
             openConfirmationWindow();
             return;
         }
 
         if (m_buttons[1].isRecPress(mousePos)) {
-            std::cout << "Cancelled Car Rental\n";
             formManager->closeForm();
             return;
         }
