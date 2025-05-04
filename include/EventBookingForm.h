@@ -1,5 +1,6 @@
 #ifndef EVENTBOOKINGFORM_H
 #define EVENTBOOKINGFORM_H
+#pragma once
 
 #include "BookingForm.h"
 
