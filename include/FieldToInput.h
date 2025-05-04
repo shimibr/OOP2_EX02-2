@@ -16,25 +16,17 @@ public:
 		if (input >= '0' && input <= '9') 
 		setInput(int(input -= '0'));
 	}
-	virtual void setInputBack() {};
-	void setIsSelected(bool isSelected) { m_isSelected = isSelected; }
-
-	virtual bool isInputBox(sf::Vector2f mousePos);
-	virtual void drawToForm(sf::RenderWindow& window) {}
-	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset);
-	virtual bool fieldIsFill()const { return 1;}
+	virtual void setInputBack() = 0;
+	virtual void setIsSelected(bool isSelected) = 0;
+	virtual bool isInputBox(sf::Vector2f mousePos) = 0;
+	virtual void drawToForm(sf::RenderWindow& window) = 0;
+	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset) = 0;
+	virtual bool fieldIsFill()const = 0;
 
 protected:
 	
-	std::string m_inputString;
-	std::string m_errorString;
-	sf::Text m_inputText; //gtfyuhijk
-	bool m_isSelected = false; //yguhijhgyguhijkl
-	sf::RectangleShape m_inputBox;//dfcghjfcghj
-	sf::Text m_nameBox;//gvyuhgvyhu
-	sf::Text m_Present; 
-	sf::Text m_PresentError;
+	
 private:
-	void pellFrontText(sf::Text& Text,const int size, sf::Color color);
+	
 
 };

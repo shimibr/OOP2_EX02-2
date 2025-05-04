@@ -15,7 +15,7 @@ FieldToInputSelect::FieldToInputSelect(int& yOffset, std::string nameBox, std::v
 //=========================================
 bool FieldToInputSelect::isInputBox(sf::Vector2f mousePos)
 {
-	if(FieldToInput::isInputBox(mousePos))
+	if(Input::isInputBox(mousePos))
 		return true;
 	
 	for (std::size_t i = 0; i < m_options.size(); ++i)
