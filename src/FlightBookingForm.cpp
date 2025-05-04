@@ -7,9 +7,9 @@
 FlightBookingForm::FlightBookingForm(sf::RenderWindow& win, DialogueManager* manager)
     : BookingForm(win,manager) 
 {
-	m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "Departure Airport:"));
-	m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "Arrival Airport:"));
-	m_inputFields.push_back(std::make_unique<FieldToInput>(m_yOffset += 50, "Departure Date:"));
+	m_inputFields.push_back(std::make_unique<InputChar>(m_yOffset += 50, "Departure Airport:"));
+	m_inputFields.push_back(std::make_unique<InputChar>(m_yOffset += 50, "Arrival Airport:"));
+	m_inputFields.push_back(std::make_unique<InputChar>(m_yOffset += 50, "Departure Date:"));
 	m_inputFields.push_back(std::make_unique<FieldToInputSelect>(m_yOffset += 50, "Preferred Time:", std::vector<std::string>{"Morning", "Noon", "Evening", "Night", "Don't Care"}, 1,4));
     setbuttons();
 }
