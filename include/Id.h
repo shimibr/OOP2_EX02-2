@@ -1,8 +1,8 @@
 #pragma once
 #include "FieldToInput.h"
-#include "Input.h"
+#include "InputInt.h"
 
-class Id : public Input<int>
+class Id : public InputInt
 {
 public:
 	Id(int& yOffset);

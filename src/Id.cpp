@@ -3,7 +3,7 @@
 #include "Id.h"
 
 Id::Id(int& yOffset)
-    :Input(yOffset, "Id:") {
+    :InputInt(yOffset, "Id:") {
 }
 
 //=========================================

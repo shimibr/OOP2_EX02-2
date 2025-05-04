@@ -10,11 +10,11 @@ class FieldToInput
 {
 public:
 	FieldToInput(int& yOffset, std::string nameBox);
-	virtual ~FieldToInput() = default; // Add a virtual destructor  
-	virtual void setInput(const int input) {}
+	virtual ~FieldToInput() = default; // Add a virtual destructor 
+	virtual void setInput(int input) {}
 	virtual void setInput(char input) {
-		if (input >= '0' && input <= '9')
-			setInput(int(input-'0'));
+		if (input >= '0' && input <= '9') 
+		setInput(int(input -= '0'));
 	}
 	virtual void setInputBack() {};
 	void setIsSelected(bool isSelected) { m_isSelected = isSelected; }
@@ -22,7 +22,8 @@ public:
 	virtual bool isInputBox(sf::Vector2f mousePos);
 	virtual void drawToForm(sf::RenderWindow& window);
 	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset);
-	bool fieldIsFill()const { return m_inputString.size() > 0; }
+	virtual bool fieldIsFill()const { return 1;}
+
 protected:
 	
 	std::string m_inputString;

@@ -7,12 +7,12 @@ class Input : public FieldToInput
 {
 public:
     Input(int& yOffset, std::string nameBox);
-	void setInput(T input) {m_input.push_back(input); }
+	void setInput(T input) override {m_input.push_back(input); }
 	void setInputBack() override;
 	void drawToForm(sf::RenderWindow& window)  override;
+	bool fieldIsFill()const override { return m_input.size() > 0; }
 protected:
-	char toString(int vale) { return char(vale + '0'); }
-	char toString(char vale) { return vale; }
+	virtual std::string inputToString() { return "0"; }
     std::vector<T> m_input; 
 };
 //=========================================
@@ -36,13 +36,7 @@ inline void Input<T>::drawToForm(sf::RenderWindow& window)
 	bool cursorVisible = (cursorTimer.getElapsedTime().asMilliseconds() % 1000 < 500);
 	m_inputBox.setOutlineColor(m_isSelected ? sf::Color(0, 120, 255) : sf::Color(160, 160, 160));
 
-	std::string inputString;
-	for (const T item : m_input)
-	{
-		inputString +=toString(item); // Convert each item to string and add a space
-	}
-
-	m_inputText.setString(inputString);// +(m_isSelected && cursorVisible ? "|" : ""));
+	m_inputText.setString(inputToString() +(m_isSelected && cursorVisible ? "|" : ""));
 	window.draw(m_inputBox);
 	window.draw(m_inputText);
 	window.draw(m_nameBox);
