@@ -10,20 +10,36 @@ Data::Data(int& yOffset, std::string fieldName)
 //=========================================
 bool Data::validateInput()
 {
-    if (m_input.size() != 10)
+    if (m_input.size() < 8 || m_input.size() > 10)
         return false;
 
-    if (m_input[4] != '-' || m_input[7] != '-')
+    if (m_input[4] != '-')
         return false;
 
+	int countSp = 0;
+	int countNum = 0;
     for (size_t i = 0; i < m_input.size(); ++i) {
-        if (i == 4 || i == 7)
-            continue; 
+ 
+		if (m_input[i] == '-')
+        {
+			countNum = 0;
 
-        if (!std::isdigit(m_input[i]))
+            if(countSp > 2)
+                return false;
+            else 
+			    countSp++;
+		}
+
+        else if (!std::isdigit(m_input[i]))
+            return false;
+
+        if (countSp < 1 && countNum < 4)
+            countNum++;
+        else if (countSp >= 1 && countNum <= 2)
+            countNum++;
+        else
             return false;
     }
-
     return true;
 }
 //=========================================
