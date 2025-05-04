@@ -50,13 +50,13 @@ bool Address::validateHelper(int i, int& j)
     }
 }
 //=========================================
-void Address::drawToPresent(sf::RenderWindow& window, int& yOffset)
+bool Address::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     if (!validateInput())
         m_errorString = "The input does not adhere to the expected format";
     else
         m_errorString = "";
    
-    Input::drawToPresent(window, yOffset);
+    return Input::drawToPresent(window, yOffset);
         
 }

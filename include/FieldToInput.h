@@ -20,7 +20,7 @@ public:
 	virtual void setIsSelected(bool isSelected) = 0;
 	virtual bool isInputBox(sf::Vector2f mousePos) = 0;
 	virtual void drawToForm(sf::RenderWindow& window) = 0;
-	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset) = 0;
+	virtual bool drawToPresent(sf::RenderWindow& window, int& yOffset) = 0;
 	virtual bool fieldIsFill()const = 0;
 	virtual void printToTerminal() const = 0;
 protected:

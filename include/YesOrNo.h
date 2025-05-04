@@ -6,9 +6,9 @@ class YesOrNo : public InputChar
 {
 public:
 	YesOrNo(int& yOffset, std::string fieldName);
-	bool validateInput();
-	void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
+	bool drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 
 private:
 
+	bool validateInput();
 };

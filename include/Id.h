@@ -6,9 +6,9 @@ class Id : public InputInt
 {
 public:
 	Id(int& yOffset);
-	bool validateInput();
-	void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
+	bool drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 
 private:
+	bool validateInput();
 
 };

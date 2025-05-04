@@ -119,9 +119,12 @@ void BookingForm::openConfirmationWindow() {
     font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
     confirmWindow.clear(sf::Color(240, 240, 240));
 
+	bool properInput = true;
     int yOffset = 80;
     for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
-        m_inputFields[i]->drawToPresent(confirmWindow, yOffset);
+       if(!m_inputFields[i]->drawToPresent(confirmWindow, yOffset))
+            properInput = false;
+
         yOffset += 25;
     }
 
@@ -157,8 +160,11 @@ void BookingForm::openConfirmationWindow() {
                     confirmWindow.close();
                 }
                 if (pressAPPROVE.isRecPress(mousePos)) {
-                    std::cout << getFormType() << " Confirmed! Returning to main menu." << std::endl;
-                    approved = true;
+                    if (properInput)
+                    {
+                        std::cout << getFormType() << " Confirmed! Returning to main menu." << std::endl;
+                        approved = true;
+                    }
                     confirmWindow.close();
                 }
             }

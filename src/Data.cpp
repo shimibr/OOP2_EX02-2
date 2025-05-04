@@ -26,13 +26,13 @@ bool Data::validateInput()
     return true;
 }
 //=========================================
-void Data::drawToPresent(sf::RenderWindow& window, int& yOffset)
+bool Data::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     if (!validateInput())
         m_errorString = "The input does not adhere to the expected format";
     else
         m_errorString = "";
 
-    Input::drawToPresent(window, yOffset);
+    return Input::drawToPresent(window, yOffset);
 
 }
