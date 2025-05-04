@@ -61,6 +61,10 @@ void BookingForm::handleInput(sf::Event event)
         }
         if (event.key.code == sf::Keyboard::Return) {
             std::cout << "Entered Data: ";
+			for (std::size_t i = 0; i < m_inputFields.size(); ++i) {
+				m_inputFields[i]->printToTerminal();
+			}
+			std::cout << std::endl;
         }
     }
     else if (event.type == sf::Event::MouseButtonPressed) {

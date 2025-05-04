@@ -1,6 +1,6 @@
 #pragma once
 #include "FieldToInput.h"
-
+#include <iostream> 
 // Template class definition
 template<typename T>
 class Input : public FieldToInput
@@ -14,6 +14,15 @@ public:
 	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 	virtual bool isInputBox(sf::Vector2f mousePos)override;
 	void setIsSelected(bool isSelected) override { m_isSelected = isSelected; }
+	void printToTerminal() const override
+	{
+		if (m_input.empty())
+			return;
+
+		for (int i = 0;i <m_input.size();i++) 
+			std::cout << m_input[i];	
+		std::cout << ", ";
+	}
 protected:
 	virtual std::string inputToString() { return "0"; }
     std::vector<T> m_input; 
