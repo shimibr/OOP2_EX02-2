@@ -10,5 +10,5 @@ public:
 	void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 
 private:
-
+	void setDefaultValues();
 };
