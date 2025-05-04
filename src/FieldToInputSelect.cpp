@@ -40,18 +40,22 @@ void FieldToInputSelect::drawToForm(sf::RenderWindow& window)
 	for (std::size_t i = 0; i < m_options.size(); ++i) 
 		m_options[i].drawRec(window);
 	
-	FieldToInput::drawToForm(window);
+	Input::drawToForm(window);
 }
 //=========================================
 void FieldToInputSelect::fillPressOptions()
 {
-	std::string stringOpshion;
-
+	m_input.clear();
 	for (std::size_t i = 0; i < m_options.size(); ++i)
 	{
 		m_options[i].setColor();
 		std::string temp = m_options[i].getPossibility();
-		stringOpshion += !temp.empty() && !m_input.empty() ? '|' + temp : temp;
-	}
 
+		if(!temp.empty() && !m_input.empty())
+			m_input.push_back('|');
+
+		for (int i = 0; i < temp.size(); i++)
+			m_input.push_back(temp[i]);
+		  
+	}
 }

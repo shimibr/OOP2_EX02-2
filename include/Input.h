@@ -9,8 +9,8 @@ public:
     Input(int& yOffset, std::string nameBox);
 	void setInput(T input) override {m_input.push_back(input); }
 	void setInputBack() override;
-	void drawToForm(sf::RenderWindow& window)  override;
 	bool fieldIsFill()const override { return m_input.size() > 0; }
+	virtual void drawToForm(sf::RenderWindow& window)  override;
 	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset);
 protected:
 	virtual std::string inputToString() { return "0"; }
