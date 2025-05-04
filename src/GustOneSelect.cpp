@@ -1,7 +1,7 @@
 #include "GustOneSelect.h"
 
-GustOneSelect::GustOneSelect(int& yOffset, std::string fieldName, std::vector<std::string> options, bool multipleSelect, const int dipolat)
-	: FieldToInputSelect(yOffset, fieldName, options, multipleSelect, dipolat) { }
+GustOneSelect::GustOneSelect(int& yOffset, std::string fieldName, std::vector<std::string> options, const int dipolat)
+	: FieldToInputSelect(yOffset, fieldName, options, false, dipolat) { }
 //=========================================
 
 bool GustOneSelect::validateInput()

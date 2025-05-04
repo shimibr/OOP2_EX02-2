@@ -21,14 +21,12 @@ protected:
     std::vector<T> m_input; 
 	std::string m_errorString;
 	
-	//=====================================
-	std::string m_inputString;
 private:
 
-	sf::Text m_inputText; //gtfyuhijk
-	bool m_isSelected = false; //yguhijhgyguhijkl
-	sf::RectangleShape m_inputBox;//dfcghjfcghj
-	sf::Text m_nameBox;//gvyuhgvyhu
+	sf::Text m_inputText;
+	bool m_isSelected = false; 
+	sf::RectangleShape m_inputBox;
+	sf::Text m_nameBox;
 	sf::Text m_Present;
 	sf::Text m_PresentError;
 

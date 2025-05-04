@@ -6,6 +6,9 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <any>
 
+class Gps;
+class CarType;
+
 class FieldToInput
 {
 public:
@@ -23,6 +26,11 @@ public:
 	virtual bool drawToPresent(sf::RenderWindow& window, int& yOffset) = 0;
 	virtual bool fieldIsFill()const = 0;
 	virtual void printToTerminal() const = 0;
+
+	virtual bool crossFieldTest(const Gps& gps) const { return false; }
+	virtual bool crossFieldTest(const CarType& carType) const { return false; }
+	//virtual bool crossFieldTest(const FieldToInput& field) const { return field.crossFieldTest(*this); }
+
 protected:
 	
 	

@@ -18,7 +18,7 @@ EventBookingForm::EventBookingForm(sf::RenderWindow& win, DialogueManager* manag
     m_inputFields.push_back(std::make_unique<Data>(m_yOffset += 50, "Event Date:"));
     m_inputFields.push_back(std::make_unique<Between>(m_yOffset += 50, "Number of Tickets:", 1, 15));
     m_inputFields.push_back(std::make_unique<YesOrNo>(m_yOffset += 50, "Wheelchair Accessibility?"));
-    m_inputFields.push_back(std::make_unique<GustOneSelect>(m_yOffset += 50, "Seating Preference:", std::vector<std::string>{ "General Admission", "Front Row", "VIP Section", "Aisle Seat" }, 0, 0));
+    m_inputFields.push_back(std::make_unique<GustOneSelect>(m_yOffset += 50, "Seating Preference:", std::vector<std::string>{ "General Admission", "Front Row", "VIP Section", "Aisle Seat" }, 0));
     setbuttons();
 }
 

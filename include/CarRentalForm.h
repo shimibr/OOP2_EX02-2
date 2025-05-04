@@ -9,6 +9,7 @@ public:
     CarRentalForm(sf::RenderWindow& win, DialogueManager* manager);    
     std::string getFormType() const override;
 private:
+    bool checkCrossField() override;
 };
 
 #endif // CARRENTALFORM_H

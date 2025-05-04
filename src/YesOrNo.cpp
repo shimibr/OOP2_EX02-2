@@ -9,23 +9,10 @@ YesOrNo::YesOrNo(int& yOffset, std::string fieldName)
 //=========================================
 bool YesOrNo::validateInput()
 {
-	if (m_input[0] == 'y' || m_input[0] == 'Y')
+    if (isYes() || isNo())
     {
-        if (m_input[1] == 'e' || m_input[1] == 'E')
-        {
-			if (m_input[2] == 's' || m_input[2] == 'S')
-				return true;
-            else
-				return false;
-        }
+        return true;
     }
-
-	else if(m_input[0] == 'n' || m_input[0] == 'N')
-	{
-		if (m_input[1] == 'o' || m_input[1] == 'O')
-			return true;
-	}
-
 	return false;
 }
 //=========================================
@@ -38,4 +25,14 @@ bool YesOrNo::drawToPresent(sf::RenderWindow& window, int& yOffset)
 
     return Input::drawToPresent(window, yOffset);
 
+}
+//=========================================
+bool YesOrNo::isYes() const
+{
+        return (m_input.size() == 3 && m_input[0] == 'y' || m_input[0] == 'Y') && (m_input[1] == 'e' || m_input[1] == 'E') && (m_input[2] == 's' || m_input[2] == 'S');
+}
+
+bool YesOrNo::isNo() const
+{
+	return (m_input.size() == 2 && m_input[0] == 'n' || m_input[0] == 'N') && (m_input[1] == 'o' || m_input[1] == 'O');
 }

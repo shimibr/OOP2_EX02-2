@@ -127,6 +127,8 @@ void BookingForm::openConfirmationWindow() {
 
         yOffset += 25;
     }
+   if(checkCrossField())
+	   properInput = false; // בבקשה תמלא פה
 
 	RecPress pressAPPROVE(sf::Vector2f(100, yOffset),18, "APPROVE", sf::Color(50, 150, 50));
     pressAPPROVE.drawRec(confirmWindow);

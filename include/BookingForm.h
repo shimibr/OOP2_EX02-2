@@ -26,6 +26,7 @@ public:
 
     virtual std::string getFormType() const = 0;
 private:
+    virtual bool checkCrossField() { return true; }
     void openConfirmationWindow();
 	void checkAllFieldsFilled();
 
