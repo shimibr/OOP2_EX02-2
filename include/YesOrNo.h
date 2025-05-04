@@ -1,8 +1,8 @@
 #pragma once
 #include "FieldToInput.h"
-#include "Input.h"
+#include "InputChar.h"
 
-class YesOrNo : public Input<char>
+class YesOrNo : public InputChar
 {
 public:
 	YesOrNo(int& yOffset, std::string fieldName);

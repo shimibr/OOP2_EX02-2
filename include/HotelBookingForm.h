@@ -8,7 +8,6 @@ public:
     std::string getFormType() const override;
 private:
     
-
 };
 
 #endif // HOTELBOOKINGFORM_H
