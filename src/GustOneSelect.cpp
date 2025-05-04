@@ -6,9 +6,11 @@ GustOneSelect::GustOneSelect(int& yOffset, std::string fieldName, std::vector<st
 
 bool GustOneSelect::validateInput()
 {
+	std::string str(m_input.begin(), m_input.end());
+
 	for (int i = 0; i < m_options.size(); i++)
 	{
-		if (m_options[i].getText() == m_inputString)
+		if (m_options[i].getText() == str)
 			return true;
 	}
 	return false;

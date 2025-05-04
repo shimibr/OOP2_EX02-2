@@ -9,7 +9,24 @@ YesOrNo::YesOrNo(int& yOffset, std::string fieldName)
 //=========================================
 bool YesOrNo::validateInput()
 {
-    return (m_inputString == "Yes" || m_inputString == "No");
+	if (m_input[0] == 'y' || m_input[0] == 'Y')
+    {
+        if (m_input[1] == 'e' || m_input[1] == 'E')
+        {
+			if (m_input[2] == 's' || m_input[2] == 'S')
+				return true;
+            else
+				return false;
+        }
+    }
+
+	else if(m_input[0] == 'n' || m_input[0] == 'N')
+	{
+		if (m_input[1] == 'o' || m_input[1] == 'O')
+			return true;
+	}
+
+	return false;
 }
 //=========================================
 void YesOrNo::drawToPresent(sf::RenderWindow& window, int& yOffset)

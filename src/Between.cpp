@@ -2,26 +2,19 @@
 
 #include "Between.h"
 
-Between::Between(int& yOffset, std::string fieldName)
-    :InputChar(yOffset, fieldName) {
+Between::Between(int& yOffset, std::string fieldName, int min, int max)
+	:InputInt(yOffset, fieldName), m_min(min), m_max(max)
+{
 }
 
 //=========================================
 bool Between::validateInput()
 {
-    if (m_inputString.empty()) {
-        return false;
+    int result = 0;
+    for (int digit : m_input) {
+        result = result * 10 + digit;
     }
-
-    for (char c : m_inputString) {
-        if (!std::isdigit(static_cast<unsigned char>(c))) {
-            return false;
-        }
-    }
-
-    int number = std::stoi(m_inputString);
-
-    return (number >= 1 && number <= 999);
+    return result >= m_min && result <= m_max;
 }
 //=========================================
 void Between::drawToPresent(sf::RenderWindow& window, int& yOffset)

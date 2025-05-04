@@ -8,30 +8,27 @@ Id::Id(int& yOffset)
 
 //=========================================
 bool Id::validateInput(){
-    if (m_inputString.length() < 5 || m_inputString.length() > 9) {
-        return false;
-    }
 
-    std::string paddedID = std::string(9 - m_inputString.length(), '0') + m_inputString;
+	if (m_input.size() < 5 || m_input.size() > 9)
+		return false;
 
+    int x = m_input.size() - 9;
     int sum = 0;
-    for (size_t i = 0; i < paddedID.length(); ++i) {
-        if (!std::isdigit(static_cast<unsigned char>(paddedID[i]))) {
-            return false; 
-        }
+    m_input.insert(m_input.begin(), std::abs(x), 0);
 
-        int digit = paddedID[i] - '0';
-        int mult = (i % 2 == 0) ? 1 : 2;
-        int prod = digit * mult;
-
-        if (prod > 9) {
-            prod -= 9;
-        }
-        sum += prod;
-    }
+	for (int i = 0; i < m_input.size(); i++)
+	{
+		int mult = (i % 2 == 0) ? 1 : 2;
+		int prod = m_input[i] * mult;
+		if (prod > 9) {
+			sum += prod / 10;
+			sum += prod % 10;
+		}
+		else
+		sum += prod;
+	}
     return (sum % 10 == 0);
 }
-
 //=========================================
 void Id::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {

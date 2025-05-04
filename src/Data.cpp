@@ -9,17 +9,17 @@ Data::Data(int& yOffset, std::string fieldName)
 //=========================================
 bool Data::validateInput()
 {
-    if (m_inputString.length() != 10)
+    if (m_input.size() != 10)
         return false;
 
-    if (m_inputString[2] != '-' || m_inputString[5] != '-')
+    if (m_input[2] != '-' || m_input[5] != '-')
         return false;
 
-    for (size_t i = 0; i < m_inputString.length(); ++i) {
+    for (size_t i = 0; i < m_input.size(); ++i) {
         if (i == 2 || i == 5)
             continue; 
 
-        if (!std::isdigit(static_cast<unsigned char>(m_inputString[i])))
+        if (!std::isdigit(m_input[i]))
             return false;
     }
 

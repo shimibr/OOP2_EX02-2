@@ -8,19 +8,12 @@ Name::Name(int& yOffset, std::string name)
 //=========================================
 bool Name::validateInput()
 {
-    if (m_inputString.empty()) {
-        return false;
-    }
-
-    for (char ch : m_inputString)
-    {
-       if (std::isdigit(static_cast<unsigned char>(ch)))
-       {
-           return false;
-       }
-
-    }
-    return true;
+	for (int i = 0; i < m_input.size(); i++)
+	{
+		if (!std::isalpha(m_input[i]))
+			return false;
+	}
+	return true;
 }
 //=========================================
 void Name::drawToPresent(sf::RenderWindow& window, int& yOffset)
