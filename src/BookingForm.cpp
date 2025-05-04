@@ -113,7 +113,7 @@ void BookingForm::setbuttons()
 }
 //==========================================
 void BookingForm::openConfirmationWindow() {
-    sf::RenderWindow confirmWindow(sf::VideoMode(500, 600), "Confirm " + getFormType());
+    sf::RenderWindow confirmWindow(sf::VideoMode(500, 650), "Confirm " + getFormType());
     
     sf::Font font;
     font.loadFromFile("C:/Windows/Fonts/arialbd.ttf");
@@ -128,7 +128,17 @@ void BookingForm::openConfirmationWindow() {
         yOffset += 25;
     }
    if(checkCrossField())
-	   properInput = false; // בבקשה תמלא פה
+   {
+ 
+       sf::Text text;
+       text.setFont(font);
+       text.setFillColor(sf::Color::Red);
+       text.setString("There is a compatibility error between the lines.");
+	   text.setCharacterSize(18);
+       text.setPosition(sf::Vector2f(50, 600));
+       confirmWindow.draw(text);
+       properInput = false;
+   }
 
 	RecPress pressAPPROVE(sf::Vector2f(100, yOffset),18, "APPROVE", sf::Color(50, 150, 50));
     pressAPPROVE.drawRec(confirmWindow);
