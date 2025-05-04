@@ -34,7 +34,7 @@ bool Data::drawToPresent(sf::RenderWindow& window, int& yOffset)
     else
         m_errorString = "";
 
-    Input::drawToPresent(window, yOffset);
+    return Input::drawToPresent(window, yOffset);
 }
 //=========================================
 void Data::setDefaultValues() 

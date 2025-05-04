@@ -10,5 +10,6 @@ public:
 
 private:
 	bool validateInput();
+	void setDefaultValues();
 
 };
