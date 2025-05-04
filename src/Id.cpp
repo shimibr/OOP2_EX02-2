@@ -40,5 +40,5 @@ void Id::drawToPresent(sf::RenderWindow& window, int& yOffset)
     else
        m_errorString = "";
 
-    FieldToInput::drawToPresent(window, yOffset);
+    Input::drawToPresent(window, yOffset);
 }

@@ -11,6 +11,7 @@ public:
 	void setInputBack() override;
 	void drawToForm(sf::RenderWindow& window)  override;
 	bool fieldIsFill()const override { return m_input.size() > 0; }
+	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset);
 protected:
 	virtual std::string inputToString() { return "0"; }
     std::vector<T> m_input; 
@@ -41,5 +42,20 @@ inline void Input<T>::drawToForm(sf::RenderWindow& window)
 	window.draw(m_inputText);
 	window.draw(m_nameBox);
 
+}
+//============================================
+template<typename T>
+inline void Input<T>::drawToPresent(sf::RenderWindow& window, int& yOffset)
+{
+	std::string displayText = m_nameBox.getString() + " " + inputToString();
+	m_Present.setString(displayText);
+	m_Present.setPosition(30, yOffset);
+	window.draw(m_Present);
+	if (m_errorString != "")
+	{
+		m_PresentError.setString(m_errorString);
+		m_PresentError.setPosition(50, yOffset += 20);
+		window.draw(m_PresentError);
+	}
 }
 

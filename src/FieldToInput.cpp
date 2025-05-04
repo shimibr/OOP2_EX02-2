@@ -30,29 +30,9 @@ bool FieldToInput::isInputBox(sf::Vector2f mousePos)
 	return m_isSelected;
 }
 //=======================================
-void FieldToInput::drawToForm(sf::RenderWindow& window)
-{
-	static sf::Clock cursorTimer;
-	bool cursorVisible = (cursorTimer.getElapsedTime().asMilliseconds() % 1000 < 500);
-	m_inputBox.setOutlineColor(m_isSelected ? sf::Color(0, 120, 255) : sf::Color(160, 160, 160));
-	m_inputText.setString(m_inputString + (m_isSelected && cursorVisible ? "|" : ""));
-	window.draw(m_inputBox);
-	window.draw(m_inputText);
-	window.draw(m_nameBox);
-}
-//=======================================
 void FieldToInput::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
-	std::string displayText = m_nameBox.getString()+" "+ m_inputString;
-	m_Present.setString(displayText);
-	m_Present.setPosition(30, yOffset);
-	window.draw(m_Present);
-	if (m_errorString != "")
-	{
-		m_PresentError.setString(m_errorString);
-		m_PresentError.setPosition(50, yOffset += 20);
-		window.draw(m_PresentError);
-	}
+	
 }
 
 //=======================================

@@ -12,7 +12,7 @@ public:
 	FieldToInput(int& yOffset, std::string nameBox);
 	virtual ~FieldToInput() = default; // Add a virtual destructor 
 	virtual void setInput(int input) {}
-	virtual void setInput(char input) {
+	virtual void setInput(char input) { //áîçì÷ä ùáå äåà öøéê ì÷áì INT
 		if (input >= '0' && input <= '9') 
 		setInput(int(input -= '0'));
 	}
@@ -20,7 +20,7 @@ public:
 	void setIsSelected(bool isSelected) { m_isSelected = isSelected; }
 
 	virtual bool isInputBox(sf::Vector2f mousePos);
-	virtual void drawToForm(sf::RenderWindow& window);
+	virtual void drawToForm(sf::RenderWindow& window) {}
 	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset);
 	virtual bool fieldIsFill()const { return 1;}
 
@@ -32,9 +32,9 @@ protected:
 	bool m_isSelected = false; //yguhijhgyguhijkl
 	sf::RectangleShape m_inputBox;//dfcghjfcghj
 	sf::Text m_nameBox;//gvyuhgvyhu
+	sf::Text m_Present; 
+	sf::Text m_PresentError;
 private:
 	void pellFrontText(sf::Text& Text,const int size, sf::Color color);
 
-	sf::Text m_PresentError;
-	sf::Text m_Present; 
 };
