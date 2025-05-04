@@ -16,7 +16,7 @@ bool Name::validateInput()
 	return true;
 }
 //=========================================
-void Name::drawToPresent(sf::RenderWindow& window, int& yOffset)
+bool Name::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
 	if (!validateInput())
         m_errorString = "The input should not contain numbers";
@@ -24,5 +24,5 @@ void Name::drawToPresent(sf::RenderWindow& window, int& yOffset)
     else
 		m_errorString = "";
 	
-	Input::drawToPresent(window, yOffset);
+	return Input::drawToPresent(window, yOffset);
 }

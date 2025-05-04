@@ -30,12 +30,12 @@ bool Id::validateInput(){
     return (sum % 10 == 0);
 }
 //=========================================
-void Id::drawToPresent(sf::RenderWindow& window, int& yOffset)
+bool Id::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     if (!validateInput())
 		m_errorString = "Wrong control digit";
     else
        m_errorString = "";
 
-    Input::drawToPresent(window, yOffset);
+	return Input::drawToPresent(window, yOffset);
 }

@@ -29,13 +29,13 @@ bool YesOrNo::validateInput()
 	return false;
 }
 //=========================================
-void YesOrNo::drawToPresent(sf::RenderWindow& window, int& yOffset)
+bool YesOrNo::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     if (!validateInput())
         m_errorString = "The input does not adhere to the expected format";
     else
         m_errorString = "";
 
-    Input::drawToPresent(window, yOffset);
+    return Input::drawToPresent(window, yOffset);
 
 }

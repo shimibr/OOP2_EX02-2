@@ -31,7 +31,7 @@ bool Email::validateInput()
 	return isStrudel;
 }
 //=========================================
-void Email::drawToPresent(sf::RenderWindow& window, int& yOffset)
+bool Email::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
     if (!validateInput())
 		m_errorString = "The input does not adhere to the expected format";
@@ -39,5 +39,5 @@ void Email::drawToPresent(sf::RenderWindow& window, int& yOffset)
     else
         m_errorString = "";
 
-    Input::drawToPresent(window, yOffset);
+	return Input::drawToPresent(window, yOffset);
 }

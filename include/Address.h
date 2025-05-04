@@ -6,10 +6,10 @@ class Address : public InputChar
 {
 public:
 	Address(int& yOffset, std::string fieldName);
-	bool validateInput();
-	bool validateHelper(int i, int &j);
-	void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
+	bool drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 
 private:
+	bool validateHelper(int i, int &j);
+	bool validateInput();
 
 };

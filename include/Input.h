@@ -11,18 +11,11 @@ public:
 	void setInputBack() override;
 	bool fieldIsFill()const override { return m_input.size() > 0; }
 	virtual void drawToForm(sf::RenderWindow& window)  override;
-	virtual void drawToPresent(sf::RenderWindow& window, int& yOffset)override;
+	virtual bool drawToPresent(sf::RenderWindow& window, int& yOffset)override;
 	virtual bool isInputBox(sf::Vector2f mousePos)override;
 	void setIsSelected(bool isSelected) override { m_isSelected = isSelected; }
-	void printToTerminal() const override
-	{
-		if (m_input.empty())
-			return;
-
-		for (int i = 0;i <m_input.size();i++) 
-			std::cout << m_input[i];	
-		std::cout << ", ";
-	}
+	void printToTerminal() const override;
+	
 protected:
 	virtual std::string inputToString() { return "0"; }
     std::vector<T> m_input; 
@@ -87,7 +80,7 @@ inline void Input<T>::drawToForm(sf::RenderWindow& window)
 }
 //============================================
 template<typename T>
-inline void Input<T>::drawToPresent(sf::RenderWindow& window, int& yOffset)
+inline bool Input<T>::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
 	std::string displayText = m_nameBox.getString() + " " + inputToString();
 	m_Present.setString(displayText);
@@ -98,7 +91,9 @@ inline void Input<T>::drawToPresent(sf::RenderWindow& window, int& yOffset)
 		m_PresentError.setString(m_errorString);
 		m_PresentError.setPosition(50, yOffset += 20);
 		window.draw(m_PresentError);
+		return false;
 	}
+	return true;
 }
 //==========================================
 template<typename T>
@@ -110,6 +105,19 @@ inline bool Input<T>::isInputBox(sf::Vector2f mousePos)
 		m_isSelected = false;
 
 	return m_isSelected;
+}
+//=======================================
+template<typename T>
+inline void Input<T>::printToTerminal() const
+{
+	{
+		if (m_input.empty())
+			return;
+
+		for (int i = 0;i < m_input.size();i++)
+			std::cout << m_input[i];
+		std::cout << ", ";
+	}
 }
 //=========================================
 template<typename T>

@@ -16,11 +16,11 @@ bool GustOneSelect::validateInput()
 	return false;
 }
 //=========================================
-void GustOneSelect::drawToPresent(sf::RenderWindow& window, int& yOffset)
+bool GustOneSelect::drawToPresent(sf::RenderWindow& window, int& yOffset)
 {
 	if (!validateInput())
 		m_errorString = "The input does not adhere to the expected format";
 	else
 		m_errorString = "";
-	FieldToInputSelect::drawToPresent(window, yOffset);
+	return Input::drawToPresent(window, yOffset);
 }
